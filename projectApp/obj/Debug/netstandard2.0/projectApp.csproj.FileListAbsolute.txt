@@ -15,3 +15,4 @@ C:\Users\Michelle\Desktop\project-github\projectApp\obj\Debug\netstandard2.0\pro
 C:\Users\Michelle\Desktop\project-github\projectApp\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\Michelle\Desktop\project-github\projectApp\obj\Debug\netstandard2.0\projectApp.dll
 C:\Users\Michelle\Desktop\project-github\projectApp\obj\Debug\netstandard2.0\projectApp.pdb
+C:\Users\Michelle\Desktop\project-github\projectApp\obj\Debug\netstandard2.0\View\BrowseLayout.xaml.g.cs

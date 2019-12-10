@@ -11,7 +11,7 @@ namespace projectApp.View
     public partial class SaveImage : ContentPage
     {
         SaveImageViewModel vm;
-        public SaveImage(string name, string timestamp, List<double>coordinates, MediaFile photo)
+        public SaveImage(string name, string timestamp, string coordinates, MediaFile photo)
         {
             InitializeComponent();
             vm = new SaveImageViewModel(photo.Path);
@@ -22,7 +22,7 @@ namespace projectApp.View
             imageIcon.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
             imageName_label.Text = name; 
             timestamp_label.Text = timestamp;
-            location_label.Text = string.Join(",", coordinates.ToArray()); //coordinates; 
+            location_label.Text = "(" + coordinates + ")";//string.Join(",", coordinates.ToArray()); //coordinates; 
 
         }
 

@@ -5,6 +5,7 @@ using System.IO;
 using Newtonsoft.Json;
 using Xamarin.Forms;
 using projectApp.View;
+using System.Linq;
 
 namespace projectApp.ViewModel
 {
@@ -93,6 +94,76 @@ namespace projectApp.ViewModel
             NewImage = new Model.Image(imagePath);
 
         }
+
+        public static void SaveImage(String Name, String TimeStamp, String Location, List<string> Category, String Directory, int Rating)
+        {
+            String documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var jsonpath = Path.Combine(documents, "AppImages.json");
+            String dir = jsonpath;//"/storage/emulated/0/Android/data/com.companyname.projectapp/files/";
+            Model.Image savedPic = new Model.Image();
+            savedPic.Name = Name;
+            savedPic.TimeStamp = TimeStamp;
+            savedPic.Category = Category;
+            savedPic.Coordinates = Location;
+            savedPic.Directory = dir + "Pictures/cs191t/" + Directory;
+            savedPic.Rating = Rating;
+            string fileName = dir + "jsonFile.txt";
+            List<Model.Image> pics = new List<Model.Image>();
+
+            if (File.Exists(dir + "jsonFile.txt"))
+            {
+                string text = File.ReadAllText(fileName);
+                try
+                {
+
+                    pics = JsonConvert.DeserializeObject<List<Model.Image>>(text);
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("--------------Json did not save--------------");
+                }
+                //Linq to find if already saved
+                var match = from p in pics
+                            where p.TimeStamp == savedPic.TimeStamp
+                            select p;
+                Model.Image firstmatch = null;
+                try
+                {
+                    firstmatch = match.First();
+                }
+                catch (Exception e)
+                {
+
+                }
+
+                if (firstmatch != null)
+                {
+                    savedPic.Directory = firstmatch.Directory;
+                    pics.Remove(firstmatch);
+                    pics.Add(savedPic);
+                    string json = JsonConvert.SerializeObject(pics);
+                    File.WriteAllText(fileName, json);
+                }
+
+                else
+                {
+                    pics.Add(savedPic);
+                    string json = JsonConvert.SerializeObject(pics);
+                    File.WriteAllText(fileName, json);
+
+                }
+            }
+            else
+            {
+                pics.Add(savedPic);
+                string json = JsonConvert.SerializeObject(pics);
+                File.WriteAllText(fileName, json);
+
+            }
+
+        }
+
         public void SaveImageToDevice()
         {
             Console.WriteLine("SAVEIMAGETODEVICE");
@@ -101,12 +172,13 @@ namespace projectApp.ViewModel
             //       also shouldn't be storing the picture :/ 
             // FIX:  
 
-            string[] coordinates = _ImageCoordinates.Split(',');
-            NewImage.Coordinates.Add(Convert.ToDouble(coordinates[0]));
-            NewImage.Coordinates.Add(Convert.ToDouble(coordinates[1]));
+            //string[] coordinates = _ImageCoordinates.Split(',');
+            //NewImage.Coordinates.Add(Convert.ToDouble(coordinates[0]));
+            //NewImage.Coordinates.Add(Convert.ToDouble(coordinates[1]));
 
             NewImage.Name = _ImageName;
             NewImage.TimeStamp = _ImageTimeStamp;
+            NewImage.Coordinates = _ImageCoordinates.Substring(1, _ImageCoordinates.Length - 2); // removes parantheses
             NewImage.Rating = _ImageRating;
             NewImage.Category = _ImageCategoryList;
 

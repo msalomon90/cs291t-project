@@ -29,26 +29,30 @@ namespace projectApp.View
         {
             List<Model.Image> PinList = vm.GetImagesToPin();
             Pin pin;
-
+            double ImageLatitude;
+            double ImageLongitude;
             bool tempFlag = true; // change location for testing
             foreach (Model.Image img in PinList)
             {
+                ImageLatitude = Convert.ToDouble(img.Coordinates.Split(',')[0]);
+                ImageLongitude = Convert.ToDouble(img.Coordinates.Split(',')[1]);
+
                 if(tempFlag)
                 {
-                    img.Coordinates[0] = 36.2077;
-                    img.Coordinates[1] = -119.3473;
+                    ImageLatitude = 36.2077;
+                    ImageLongitude = -119.3473;
                     tempFlag = false;
                 }
                 pin = new Pin
                 {
                     Label = img.Name,
                     Type = PinType.Place,
-                    Position = new Position(img.Coordinates[0], img.Coordinates[1])
+                    Position = new Position(ImageLatitude, ImageLongitude)
                 };
 
                 map.Pins.Add(pin);
 
-                map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(img.Coordinates[0], img.Coordinates[1]), Distance.FromMiles(100)));
+                map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(ImageLatitude, ImageLongitude), Distance.FromMiles(100)));
             }
         }
 

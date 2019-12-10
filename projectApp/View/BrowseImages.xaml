@@ -1,15 +1,157 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:projectApp.ViewModel"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="projectApp.View.BrowseImages">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="BROWSE IMAGES"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <ContentPage.BindingContext>
+        <vm:BrowseImagesViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <Grid Padding="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button 
+                    Clicked="time_button_Clicked"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="Time" 
+                    VerticalOptions="Start"
+                    HorizontalOptions="FillAndExpand" 
+                   
+                    />
+                <Button 
+                    Clicked="distance_button_Clicked"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="Distance" 
+                    VerticalOptions="Start"
+                    HorizontalOptions="FillAndExpand" 
+                    
+                    />
+                <Button 
+                    Clicked="category_button_Clicked"
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Text="Category" 
+                    VerticalOptions="Start"
+                    HorizontalOptions="FillAndExpand" 
+                   
+                    />
+                <Button 
+                    Clicked="rating_button_Clicked"
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    Text="Top 5" 
+                    VerticalOptions="Start"
+                    HorizontalOptions="FillAndExpand" 
+                   
+                    />
+            </Grid>
+        </Grid>
+
+        <CollectionView 
+            ItemsSource="{Binding Pictures}"
+                        x:Name="colView"
+                    SelectionMode="Single"
+                    SelectionChanged="OnCollectionViewSelectionChanged"
+                    >
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                        Span="1" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="20" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.RowSpan="5"
+                       Source="{Binding Directory}"
+                       Aspect="AspectFill"
+                       HeightRequest="60"
+                       WidthRequest="60" >
+                        </Image>
+                        <Label Grid.Column="1"
+                       Grid.ColumnSpan="3"
+                       Text="{Binding Name}"
+                       FontAttributes="Bold"
+                       LineBreakMode="TailTruncation" />
+                        <Label Grid.Row="1"
+                            Grid.ColumnSpan="3"
+                       Grid.Column="2"
+                       Text="{Binding Category}"
+                       LineBreakMode="TailTruncation"
+                       FontAttributes="Italic"
+                       VerticalOptions="End" />
+                        <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Text="Category: "
+                       LineBreakMode="TailTruncation"
+                       FontAttributes="Italic"
+                       VerticalOptions="End" />
+                        <Label Grid.Row="2"
+                       Grid.Column="2"
+                            Grid.ColumnSpan="3"
+                       Text="{Binding Rating}"
+                       LineBreakMode="TailTruncation"
+                       FontAttributes="Italic"
+                       VerticalOptions="End" />
+                        <Label Grid.Row="2"
+                       Grid.Column="1"
+                       Text="Rating: "
+                       LineBreakMode="TailTruncation"
+                       FontAttributes="Italic"
+                       VerticalOptions="End" />
+                        <Label Grid.Row="3"
+                            Grid.ColumnSpan="3"
+                       Grid.Column="2"
+                       Text="{Binding TimeStamp}"
+                       LineBreakMode="TailTruncation"
+                       FontAttributes="Italic"
+                       VerticalOptions="End" />
+                        <Label Grid.Row="3"
+                       Grid.Column="1"
+                       Text="Timestamp: "
+                       LineBreakMode="TailTruncation"
+                       FontAttributes="Italic"
+                       VerticalOptions="End" />
+                        <Label Grid.Row="4"
+                       Grid.Column="2"
+                            Grid.ColumnSpan="3"
+                       Text="{Binding Coordinates}"
+                       LineBreakMode="TailTruncation"
+                       FontAttributes="Italic"
+                       VerticalOptions="End" />
+                        <Label Grid.Row="4"
+                       Grid.Column="1"
+                       Text="Coordinates: "
+                       LineBreakMode="TailTruncation"
+                       FontAttributes="Italic"
+                       VerticalOptions="End" />
+
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
 </ContentPage>

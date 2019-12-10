@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:vm="clr-namespace:projectApp.ViewModel"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="projectApp.View.BrowseLayout">
+    <ContentPage.Content>
+        <StackLayout Margin="20,5,20,20">
+            <Entry Text="{Binding Name}"
+               x:Name="imageName_entry"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+            <Grid Padding="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Image Source="{Binding Directory}" 
+                           Grid.Row="0"
+                           Grid.ColumnSpan="4"                         
+                           >
+                    <Image.GestureRecognizers>
+                        <!-- Can also set a swipe threshold on each gesture recognizer -->
+                        <SwipeGestureRecognizer Direction="Left" Swiped="OnSwiped"/>
+                        <SwipeGestureRecognizer Direction="Right" Swiped="OnSwiped"/>
+                        <SwipeGestureRecognizer Direction="Up" Swiped="OnSwiped"/>
+                        <SwipeGestureRecognizer Direction="Down" Swiped="OnSwiped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Label Grid.Row="4"
+                       Grid.Column="2"
+                       Text="Category: "
+                       LineBreakMode="TailTruncation"
+                       FontAttributes="Bold"
+                       VerticalOptions="End" />
+                <Label Grid.Row="4"
+                       Grid.Column="3"
+                        x:Name="category_label"
+                       Text="{Binding Category}"
+                       FontAttributes="Bold"
+                       VerticalOptions="End" 
+                        />
+
+                <Label Grid.Row="4"
+                       Grid.Column="0"
+                       Text="Rating: "
+                       LineBreakMode="TailTruncation"
+                       FontAttributes="Bold"
+                       VerticalOptions="End" />
+                <Label Grid.Row="4"                      
+                       Grid.Column="1"
+                       x:Name="rating_label"
+                       Text="{Binding Rating}"
+                       FontAttributes="Bold"
+                       VerticalOptions="End" 
+                       />
+
+                <Label Grid.Row="2"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       Text="Timestamp: "
+                       LineBreakMode="TailTruncation"
+                       FontAttributes="Italic"
+                       VerticalOptions="End" />
+                <Label Grid.Row="2"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       x:Name="timestamp_label"
+                       Text="{Binding TimeStamp}"
+                       LineBreakMode="TailTruncation"
+                       FontAttributes="Italic"
+                       VerticalOptions="End" />
+
+                <Label Grid.Row="3"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       Text="Coordinates: "
+                       LineBreakMode="TailTruncation"
+                       FontAttributes="Italic"
+                       VerticalOptions="End" />
+                <Label Grid.Row="3"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="3"
+                        x:Name="coordinates_label"
+                       Text="{Binding Coordinates}"
+                       LineBreakMode="TailTruncation"
+                       FontAttributes="Italic"
+                       VerticalOptions="End" />
+
+
+                <ImageButton x:Name="SavePicChanges" Source="save2.png" Clicked="PicView_Clicked"
+                     Grid.Row="1"
+                     Grid.Column="1"
+                     Grid.ColumnSpan="2"
+                     BackgroundColor="Green"                       
+                     CornerRadius="40"/>
+
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
