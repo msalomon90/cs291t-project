@@ -9,9 +9,14 @@ namespace projectApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BrowseImages : ContentPage
     {
+        BrowseImagesViewModel vm;
         public BrowseImages()
         {
             InitializeComponent();
+            CategoryPicker.IsVisible = false;
+
+            vm = new BrowseImagesViewModel();
+            BindingContext = vm;
         }
 
         public void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -26,24 +31,33 @@ namespace projectApp.View
         {
             //  BrowseImagesViewModel.;
 
-            colView.ItemsSource = new BrowseImagesViewModel().Sorter(true, false, false, false);
+            CategoryPicker.IsVisible = false;
+            colView.ItemsSource = vm.Sorter(true, false, false, false);
         }
 
         public void distance_button_Clicked(object sender, EventArgs e)
         {
-            colView.ItemsSource = new BrowseImagesViewModel().Sorter(false, true, false, false);
+            CategoryPicker.IsVisible = false;
+            colView.ItemsSource = vm.Sorter(false, true, false, false);
         }
 
         public void category_button_Clicked(object sender, EventArgs e)
         {
-            colView.ItemsSource = new BrowseImagesViewModel().Sorter(false, false, true, false);
-
+            CategoryPicker.IsVisible = true;
+            colView.IsVisible = false;
+            //colView.ItemsSource = new BrowseImagesViewModel().Sorter(false, false, true, false);
 
         }
 
         public void rating_button_Clicked(object sender, EventArgs e)
         {
-            colView.ItemsSource = new BrowseImagesViewModel().Sorter(false, false, false, true);
+            colView.ItemsSource = vm.Sorter(false, false, false, true);
+        }
+
+        private void CategoryPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            colView.ItemsSource = vm.Sorter(false, false, true, false);
+            colView.IsVisible = true;
         }
     }
 }

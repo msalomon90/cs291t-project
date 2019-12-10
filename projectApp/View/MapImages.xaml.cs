@@ -27,6 +27,7 @@ namespace projectApp.View
         }
         public void AddPinsToMap()
         {
+            map.Pins.Clear();
             List<Model.Image> PinList = vm.GetImagesToPin();
             Pin pin;
             double ImageLatitude;
@@ -39,8 +40,8 @@ namespace projectApp.View
 
                 if(tempFlag)
                 {
-                    ImageLatitude = 36.2077;
-                    ImageLongitude = -119.3473;
+                    ImageLatitude = 36.7378;
+                    ImageLongitude = -119.7871;
                     tempFlag = false;
                 }
                 pin = new Pin
@@ -58,6 +59,7 @@ namespace projectApp.View
 
         private void Picker_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             AddPinsToMap();
         }
     }

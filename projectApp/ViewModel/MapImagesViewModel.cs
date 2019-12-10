@@ -35,8 +35,8 @@ namespace projectApp.ViewModel
 
         public MapImagesViewModel()
         {
-            _CategoryList = new ObservableCollection<string>();
-            mapList = new List<Model.Image>();
+            //_CategoryList = new ObservableCollection<string>();
+            //mapList = new List<Model.Image>();
 
             DeserializeImageJson();
             CreateCategoryList();
@@ -54,11 +54,6 @@ namespace projectApp.ViewModel
                         _CategoryList.Add(category);
                     }
                 }
-            }
-            foreach(string c in _CategoryList)
-            {
-                
-                Console.WriteLine("CATEGORIES: {0}", c);
             }
         }
         public void CreateMapList()   // Could use linq here -__-
@@ -85,6 +80,9 @@ namespace projectApp.ViewModel
         }
         public void DeserializeImageJson()
         {
+            _CategoryList = new ObservableCollection<string>();
+            mapList = new List<Model.Image>();
+
             string documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             var jsonpath = Path.Combine(documents, "AppImages.json");
             if (!File.Exists(jsonpath))
@@ -102,6 +100,7 @@ namespace projectApp.ViewModel
         }
         public List<Model.Image> GetImagesToPin()
         {
+            DeserializeImageJson();
             CreateMapList();
             Console.WriteLine("MAPLIST: {0}", mapList.Count);
             return mapList;

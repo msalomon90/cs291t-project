@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.Linq;
 using System.Collections.ObjectModel;
 using Xamarin.Essentials;
+using System.Runtime.CompilerServices;
 
 namespace projectApp.ViewModel
 {
@@ -16,28 +17,74 @@ namespace projectApp.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        void RaisePropertyChanged([CallerMemberName] string name = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
         public Location loc { get; set; }
         public List<Model.Image> pics { get; set; }
 
+        ObservableCollection<string> _CategoryList;
+        public string _SelectedCategory;
+
+        public ObservableCollection<string> CategoryList
+        {
+            get { return _CategoryList; }
+            set { _CategoryList = value; RaisePropertyChanged("CategoryList"); }
+        }
+        public string SelectedCategory
+        {
+            get { return _SelectedCategory; }
+            set
+            {
+                _SelectedCategory = value;
+                Console.WriteLine("SELECTEDCATEGORY!!{0}", _SelectedCategory);
+                RaisePropertyChanged("SelectedCategory");
+            }
+        }
+       
         ObservableCollection<Model.Image> _pictures = new ObservableCollection<Model.Image>();
         public List<Model.Image> Pictures { get; set; }
 
         public BrowseImagesViewModel()
         {
+            _CategoryList = new ObservableCollection<string>();
+            CreateCategoryList();
             string documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             var jsonpath = Path.Combine(documents, "AppImages.json");
+            String fileName = jsonpath;
 
-            String fileName = jsonpath;//"/storage/emulated/0/Android/data/com.companyname.projectapp/files/jsonFile.txt";
             string text = File.ReadAllText(fileName);
             List<Model.Image> pics = new List<Model.Image>();
             pics = JsonConvert.DeserializeObject<List<Model.Image>>(text);
             GetLocation(pics);
             Pictures = pics;
-            //     Pictures;
-            //     Images = pics;
         }
+        public void CreateCategoryList()
+        {
 
+            string documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var jsonpath = Path.Combine(documents, "AppImages.json");
+
+            String fileName = jsonpath;
+            List<Model.Image> pics = new List<Model.Image>();
+            string text = File.ReadAllText(fileName);
+            pics = JsonConvert.DeserializeObject<List<Model.Image>>(text);
+
+            foreach (Model.Image img in pics)   // could use linq here -__-
+            {
+                foreach (string category in img.Category)
+                {
+                    if (!_CategoryList.Contains(category))
+                    {
+                        _CategoryList.Add(category);
+                    }
+                }
+            }
+            foreach (string c in _CategoryList)
+            {
+
+                Console.WriteLine("CATEGORIES: {0}", c);
+            }
+        }
         public async void GetLocation(List<Model.Image> pics)
         {
             try
@@ -113,7 +160,7 @@ namespace projectApp.ViewModel
             else if (cat)
             {
                 var orderByCat = from p in pics
-                                 orderby p.Category descending
+                                 where p.Category.Contains(_SelectedCategory)
                                  select p;
                 Pictures = orderByCat.ToList();
                 return Pictures;

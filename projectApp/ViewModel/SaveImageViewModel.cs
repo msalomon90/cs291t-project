@@ -187,15 +187,15 @@ namespace projectApp.ViewModel
 
             if (!File.Exists(jsonpath))
             {
-                using (File.Create(jsonpath));
+                using (File.Create(jsonpath)) ;
             }
             Console.WriteLine("JSONPATH: {0}", jsonpath);
             string jsonData = File.ReadAllText(jsonpath);
             var imgList = new List<Model.Image>();
 
-              
+
             //Used to reset file for testing
-              
+
             /*
             bool resetJson = true;
             if(resetJson)
@@ -203,10 +203,9 @@ namespace projectApp.ViewModel
                 File.Delete(jsonpath);
                 resetJson = false;
             }
-
             return;*/
 
-            if(jsonData != "")
+            if (jsonData != "")
             {
                 imgList = JsonConvert.DeserializeObject<List<Model.Image>>(jsonData);
                 imgList.Add(NewImage);
@@ -220,14 +219,14 @@ namespace projectApp.ViewModel
             Console.WriteLine("JSON: {0}", jsonData);
 
         }
-      
+
         public string CategoryList()
         {
             _ImageCategoryList.Add(_ImageCategory);
             Console.WriteLine("IMAGECATEGORY: {0}", _ImageCategory);
 
             string categories = "";
-            foreach(string c in _ImageCategoryList)
+            foreach (string c in _ImageCategoryList)
             {
                 categories += c + "\n";
             }

@@ -1,9 +1,9 @@
 C:\Users\Michelle\Desktop\project-github\projectApp\bin\Debug\netstandard2.0\projectApp.deps.json
 C:\Users\Michelle\Desktop\project-github\projectApp\bin\Debug\netstandard2.0\projectApp.dll
 C:\Users\Michelle\Desktop\project-github\projectApp\bin\Debug\netstandard2.0\projectApp.pdb
-C:\Users\Michelle\Desktop\project-github\projectApp\obj\Debug\netstandard2.0\projectApp.csprojAssemblyReference.cache
 C:\Users\Michelle\Desktop\project-github\projectApp\obj\Debug\netstandard2.0\App.xaml.g.cs
 C:\Users\Michelle\Desktop\project-github\projectApp\obj\Debug\netstandard2.0\View\BrowseImages.xaml.g.cs
+C:\Users\Michelle\Desktop\project-github\projectApp\obj\Debug\netstandard2.0\View\BrowseLayout.xaml.g.cs
 C:\Users\Michelle\Desktop\project-github\projectApp\obj\Debug\netstandard2.0\View\CaptureImage.xaml.g.cs
 C:\Users\Michelle\Desktop\project-github\projectApp\obj\Debug\netstandard2.0\View\MainPage.xaml.g.cs
 C:\Users\Michelle\Desktop\project-github\projectApp\obj\Debug\netstandard2.0\View\MapImages.xaml.g.cs
@@ -15,4 +15,3 @@ C:\Users\Michelle\Desktop\project-github\projectApp\obj\Debug\netstandard2.0\pro
 C:\Users\Michelle\Desktop\project-github\projectApp\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\Michelle\Desktop\project-github\projectApp\obj\Debug\netstandard2.0\projectApp.dll
 C:\Users\Michelle\Desktop\project-github\projectApp\obj\Debug\netstandard2.0\projectApp.pdb
-C:\Users\Michelle\Desktop\project-github\projectApp\obj\Debug\netstandard2.0\View\BrowseLayout.xaml.g.cs

@@ -18,7 +18,7 @@
   <uses-feature android:name="android.hardware.location.gps" android:required="false" />
   <uses-feature android:name="android.hardware.location.network" android:required="false" />
   <application android:label="projectApp.Android" android:name="android.app.Application" android:allowBackup="true" android:icon="@mipmap/icon" android:debuggable="true">
-    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDPttQ6on4sJlRcl6Rt8g4HXvpi5U3fo3s" />
+    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAzqIabKfPjLpQyqETeZVaKGut-caj-Gqg" />
     <uses-library android:name="org.apache.http.legacy" android:required="false" />
     <provider android:name="android.support.v4.content.FileProvider" android:authorities="com.companyname.projectapp.fileprovider" android:exported="false" android:grantUriPermissions="true">
       <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>

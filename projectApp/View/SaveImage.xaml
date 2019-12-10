@@ -7,10 +7,12 @@
              x:Class="projectApp.View.SaveImage">
     <ContentPage.Content>
         <Grid BackgroundColor="#265077" >
-            
+
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>  <!-- image preview -->
-                <RowDefinition Height="40"/> <!-- info rows -->
+                <RowDefinition Height="*"/>
+                <!-- image preview -->
+                <RowDefinition Height="40"/>
+                <!-- info rows -->
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
@@ -20,12 +22,13 @@
                 <ColumnDefinition Width="130"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
+
             <Image x:Name="imageIcon" 
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
-                   Margin="0, 20, 0, 20"/> <!-- image preview spans 2 rows -->
-            
+                   Margin="0, 20, 0, 20"/>
+            <!-- image preview spans 2 rows -->
+
             <!-- IMAGE NAME -->
             <Label Text="Name: "
                    FontSize="Medium"
@@ -54,7 +57,7 @@
                        BackgroundColor="#5085A5"
                        Margin="10, 0, 0, 0"/>
             </Frame>
-            
+
             <!-- TIMESTAMP -->
 
             <Label Text="Timestamp: " 
@@ -112,7 +115,7 @@
                        BackgroundColor="#5085A5"
                        Margin="10, 0, 0, 0"/>
             </Frame>
-            
+
             <!-- CATEGORY -->
             <Label Text="Category: " 
                    FontSize="Medium"
@@ -152,7 +155,7 @@
                             BackgroundColor="#8EE4AF"/>
                 </StackLayout>
             </Frame>
-            
+
             <!-- CONFIRM SAVE BUTTON -->
             <Button x:Name="ConfirmSaveButton" Clicked="ConfirmSaveButton_Clicked" 
                     Text="Save" 
@@ -168,48 +171,3 @@
         </Grid>
     </ContentPage.Content>
 </ContentPage>
-    
- <!--
-        <Entry Text="Timestamp: " 
-                   IsReadOnly="True"
-                   Grid.Column="0" 
-                   Grid.Row="2"
-                   HorizontalTextAlignment="End"
-                   HorizontalOptions="EndAndExpand"
-                   VerticalOptions="Center"/>
-    <Entry  x:Name="TimeStamp_Entry"
-                   IsReadOnly="True"
-                   Grid.Column="1" 
-                   Grid.Row="2"
-                   HorizontalTextAlignment="Start"
-                   HorizontalOptions="FillAndExpand"
-                   VerticalOptions="Center"/>
-    <Entry Text="Location: " 
-                   IsReadOnly="True"
-                   Grid.Column="0" 
-                   Grid.Row="3"
-                   HorizontalTextAlignment="End"
-                   HorizontalOptions="EndAndExpand"
-                   VerticalOptions="Center"/>
-    <Entry  x:Name="Location_Entry"
-                   IsReadOnly="True"
-                   Grid.Column="1" 
-                   Grid.Row="3"
-                   HorizontalTextAlignment="Start"
-                   HorizontalOptions="FillAndExpand"
-                   VerticalOptions="Center"/>
-    <Entry Text="Category: " 
-                   IsReadOnly="True"
-                   Grid.Column="0" 
-                   Grid.Row="4"
-                   HorizontalTextAlignment="End"
-                   HorizontalOptions="EndAndExpand"
-                   VerticalOptions="Center"/>
-    <Entry Placeholder="enter a category"
-                   Grid.Column="1" 
-                   Grid.Row="4"
-                   HorizontalTextAlignment="Start"
-                   HorizontalOptions="FillAndExpand"
-                   VerticalOptions="Center"/>
-
-    -->

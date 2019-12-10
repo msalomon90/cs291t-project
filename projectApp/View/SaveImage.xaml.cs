@@ -20,7 +20,7 @@ namespace projectApp.View
             CategoryButton.IsEnabled = false;
 
             imageIcon.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
-            imageName_label.Text = name; 
+            imageName_label.Text = name;
             timestamp_label.Text = timestamp;
             location_label.Text = "(" + coordinates + ")";//string.Join(",", coordinates.ToArray()); //coordinates; 
 

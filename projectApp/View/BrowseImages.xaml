@@ -12,7 +12,7 @@
     <StackLayout>
         <Grid Padding="5">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
+                <RowDefinition Height="45" />
             </Grid.RowDefinitions>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -59,10 +59,13 @@
                     />
             </Grid>
         </Grid>
-        <Picker Title="Categories" 
-                    Grid.Column="0"
-                    Grid.Row="0"
-                    SelectedItem="{Binding MapCategory}"/>
+        <Picker x:Name="CategoryPicker" Title="Categories" ItemsSource ="{Binding CategoryList}" 
+                IsVisible="False"
+                Grid.Column="0"
+                Grid.Row="0"
+                SelectedItem="{Binding SelectedCategory}"
+                SelectedIndexChanged="CategoryPicker_SelectedIndexChanged"
+                Margin="10,0,10,0"/>
         <CollectionView ItemsSource="{Binding Pictures}"
                         x:Name="colView"
                         SelectionMode="Single"
