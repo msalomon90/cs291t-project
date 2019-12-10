@@ -10,6 +10,7 @@
         <swipecards:CardStackView x:Name="CardStackView" ItemsSource="{Binding Cards}" Swiped="CardStackView_Swiped">
             <swipecards:CardStackView.ItemTemplate>
                 <DataTemplate>
+                    <!-- Image to display on card -->
                     <Image Source="{Binding Directory, Mode=TwoWay}" 
                            VerticalOptions="CenterAndExpand" 
                            HorizontalOptions="CenterAndExpand"/>

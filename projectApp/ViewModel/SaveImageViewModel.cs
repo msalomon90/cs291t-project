@@ -27,6 +27,8 @@ namespace projectApp.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        /*** Binding properties for image details  ***/
         public string ImageName
         {
             get { return _ImageName; }
@@ -82,9 +84,10 @@ namespace projectApp.ViewModel
                 OnPropertyChanged("CategoryButtonEnabled");
             }
         }
+        /*** Constructor ***/
+        // Initialize all binding properties
         public SaveImageViewModel(string imagePath)
         {
-            Console.WriteLine("SAVEIMAGEVIEWMODEL CONSTRUCTOR");
             _ImageName = "";
             _ImageCoordinates = "";
             _ImageRating = 0;
@@ -95,11 +98,16 @@ namespace projectApp.ViewModel
 
         }
 
+        /*** Second Constructor ***/
+        // To be used with browse images (probably could have been made to utility function)
         public static void SaveImage(String Name, String TimeStamp, String Location, List<string> Category, String Directory, int Rating)
         {
+            // Get path to image
             String documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             var jsonpath = Path.Combine(documents, "AppImages.json");
-            String dir = jsonpath;//"/storage/emulated/0/Android/data/com.companyname.projectapp/files/";
+            String dir = jsonpath;
+
+            // Object to read from json object
             Model.Image savedPic = new Model.Image();
             savedPic.Name = Name;
             savedPic.TimeStamp = TimeStamp;
@@ -123,6 +131,7 @@ namespace projectApp.ViewModel
                 {
                     Console.WriteLine("--------------Json did not save--------------");
                 }
+
                 //Linq to find if already saved
                 var match = from p in pics
                             where p.TimeStamp == savedPic.TimeStamp
@@ -164,32 +173,30 @@ namespace projectApp.ViewModel
 
         }
 
+        /*** Adds an object with all properties to json ***/
         public void SaveImageToDevice()
         {
-            Console.WriteLine("SAVEIMAGETODEVICE");
             // NOTE: Images always get saved to device even if you back out and dont press save button.
             //       The only difference is that it will not be added to the json which is good, but we
             //       also shouldn't be storing the picture :/ 
-            // FIX:  
+          
 
-            //string[] coordinates = _ImageCoordinates.Split(',');
-            //NewImage.Coordinates.Add(Convert.ToDouble(coordinates[0]));
-            //NewImage.Coordinates.Add(Convert.ToDouble(coordinates[1]));
-
+            // Initialize object information
             NewImage.Name = _ImageName;
             NewImage.TimeStamp = _ImageTimeStamp;
             NewImage.Coordinates = _ImageCoordinates.Substring(1, _ImageCoordinates.Length - 2); // removes parantheses
             NewImage.Rating = _ImageRating;
             NewImage.Category = _ImageCategoryList;
 
+            // Get json file path
             String documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             var jsonpath = Path.Combine(documents, "AppImages.json");
 
+            // Create file if not existing
             if (!File.Exists(jsonpath))
             {
                 using (File.Create(jsonpath)) ;
             }
-            Console.WriteLine("JSONPATH: {0}", jsonpath);
             string jsonData = File.ReadAllText(jsonpath);
             var imgList = new List<Model.Image>();
 
@@ -205,6 +212,7 @@ namespace projectApp.ViewModel
             }
             return;*/
 
+            // Add object to json
             if (jsonData != "")
             {
                 imgList = JsonConvert.DeserializeObject<List<Model.Image>>(jsonData);
@@ -213,13 +221,10 @@ namespace projectApp.ViewModel
             }
 
             jsonData = JsonConvert.SerializeObject(imgList, Formatting.Indented);
-
             File.WriteAllText(jsonpath, jsonData);
 
-            Console.WriteLine("JSON: {0}", jsonData);
-
         }
-
+        /*** Returns a string of categories for display dialogue box ***/
         public string CategoryList()
         {
             _ImageCategoryList.Add(_ImageCategory);
@@ -228,7 +233,7 @@ namespace projectApp.ViewModel
             string categories = "";
             foreach (string c in _ImageCategoryList)
             {
-                categories += c + "\n";
+                categories += c + "\n";  // each category on its own line
             }
 
             return categories;

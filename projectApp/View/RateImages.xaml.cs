@@ -16,19 +16,19 @@ namespace projectApp.View
         RateImageViewModel vm;
         public RateImages()
         {
+            // Initialize and bind
             InitializeComponent();
             vm = new ViewModel.RateImageViewModel();
             BindingContext = vm;
         }
 
+        /*** Sends rating of swipe direction ***/
         private void CardStackView_Swiped(object sender, SwipeCards.Controls.Arguments.SwipedEventArgs e)
         {
             
             Model.Image img = (Model.Image)e.Item;
             Console.WriteLine("SWIPED: {0}", img.Name);
             vm.AddImageRating(img, e.Direction);
-            //Device.StartTimer(TimeSpan.FromSeconds(2), null);
-            //ratetest.IsVisible = false;
             
         }
     }

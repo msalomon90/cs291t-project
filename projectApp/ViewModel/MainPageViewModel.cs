@@ -8,15 +8,14 @@ namespace projectApp.ViewModel
 {
     class MainPageViewModel
     {
-        //public string captureImage { get; }
         public string CameraPage { get; }
         public string BrowsePage { get; }
         public string RatePage { get; }
         public string MapPage { get; }
 
-        public MainPageViewModel()  // Image type from model 
+        public MainPageViewModel()  
         {
-            //captureImage = $"{image.Name}";
+            // Default the Ids
             CameraPage = "CameraButtonId";
             BrowsePage = "BrowseButtonId";
             RatePage = "RateButtonId";
@@ -25,7 +24,8 @@ namespace projectApp.ViewModel
 
         public Page MainPage_NextPage(string nextPageName)  
         {
-            if (nextPageName == CameraPage)    // probably need a try catch here for when/if its null
+            // Navigation for moving to next page
+            if (nextPageName == CameraPage)      // probably need a try catch here for when/if its null
             {
                 return new View.CaptureImage();
             }
@@ -37,7 +37,7 @@ namespace projectApp.ViewModel
             {
                 return new View.RateImages();
             }
-            else if(nextPageName == MapPage)  // Might chaneg to MapPage
+            else if(nextPageName == MapPage)     // Might chaneg to MapPage
             {
                 return new View.MapImages();
             }

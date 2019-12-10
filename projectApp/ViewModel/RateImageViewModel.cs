@@ -17,31 +17,35 @@ namespace projectApp.ViewModel
 
         ObservableCollection<Model.Image> cards;
         List<Model.Image> imgList { get; set; }
-        public ObservableCollection<Model.Image> Cards
+        public ObservableCollection<Model.Image> Cards   // collection for cards
         {
             get { return cards; }
             set { cards = value; RaisePropertyChanged(); }
         }
+
+        /*** Writes in object to json ***/
         public void SerializeImageObject()
         {
+            // Gets json path
             string documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             var jsonpath = Path.Combine(documents, "AppImages.json");
 
-            string jsonData = JsonConvert.SerializeObject(imgList, Formatting.Indented);
+            string jsonData = JsonConvert.SerializeObject(imgList, Formatting.Indented); // Write into json
 
             File.WriteAllText(jsonpath, jsonData);
-
-            Console.WriteLine("UPDATEDJSON: {0}", jsonData);
         }
+        /*** Read json to object ***/
+        // Should be a utility function
         public void DeserializeImageJson()
         {
+            // Get json path
             string documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             var jsonpath = Path.Combine(documents, "AppImages.json");
+
             if (!File.Exists(jsonpath))
             {
                 using (File.Create(jsonpath)) ;
             }
-            Console.WriteLine("JSONPATH: {0}", jsonpath);
             string jsonData = File.ReadAllText(jsonpath);
 
             if (jsonData != "")
@@ -51,6 +55,8 @@ namespace projectApp.ViewModel
             }
 
         }
+        /*** Constructor ***/
+        // Initialize cards and imgList objects
         public RateImageViewModel()
         {
             cards = new ObservableCollection<Model.Image>();
@@ -58,13 +64,14 @@ namespace projectApp.ViewModel
 
             DeserializeImageJson();
 
-            foreach(Model.Image img in imgList)
+            foreach(Model.Image img in imgList)   // print for testing
             {
                 Console.WriteLine("IMGDIR: {0}", img.Directory);
                 cards.Add(img);
             }
         }
 
+        /*** Changes rating of image based on direction ***/
         public void AddImageRating(Model.Image ratedImg, SwipeDirection direction)
         {
             imgList.Remove(ratedImg);
@@ -84,6 +91,5 @@ namespace projectApp.ViewModel
 
         }
 
-        // Implementation of INotifyPropertyChanged
     }
 }
