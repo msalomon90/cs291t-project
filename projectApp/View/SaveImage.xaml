@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="projectApp.View.SaveImage">
+    <ContentPage.Content>
+        <Grid BackgroundColor="#265077" >
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>  <!-- image preview -->
+                <RowDefinition Height="40"/> <!-- info rows -->
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Image x:Name="imageIcon" 
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Margin="0, 20, 0, 20"/> <!-- image preview spans 2 rows -->
+            
+            <!-- IMAGE NAME -->
+            <Label Text="Name: "
+                   FontSize="Medium"
+                   TextColor="#8FC1E3"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   HorizontalTextAlignment="End"
+                   HorizontalOptions="EndAndExpand"
+                   VerticalOptions="Center"/>
+            <Frame Grid.Row="1" 
+                   Grid.Column="1"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Padding="2"
+                   Margin="0, 0, 15, 0"
+                   CornerRadius="7"
+                   BorderColor="#5085A5"
+                   BackgroundColor="#5085A5">
+                <!-- binding check -->
+                <Label x:Name="imageName_label" Text="{Binding ImageName, Mode=TwoWay}"  
+                       TextColor="#F7F9fB"
+                       HorizontalTextAlignment="Start"
+                       HorizontalOptions="Start"
+                       VerticalOptions="FillAndExpand"
+                       VerticalTextAlignment="Center"
+                       BackgroundColor="#5085A5"
+                       Margin="10, 0, 0, 0"/>
+            </Frame>
+            
+            <!-- TIMESTAMP -->
+
+            <Label Text="Timestamp: " 
+                   FontSize="Medium"
+                   TextColor="#8FC1E3"
+                   Grid.Column="0" 
+                   Grid.Row="2"
+                   HorizontalTextAlignment="End"
+                   HorizontalOptions="EndAndExpand"
+                   VerticalOptions="Center"/>
+            <Frame Grid.Row="2" 
+                   Grid.Column="1"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Padding="2"
+                   Margin="0, 0, 15, 0"
+                   CornerRadius="7"
+                   BorderColor="#5085A5"
+                   BackgroundColor="#5085A5">
+                <Label x:Name="timestamp_label" Text="{Binding ImageTimeStamp, Mode=TwoWay}"
+                       TextColor="#F7F9fB"
+                       HorizontalTextAlignment="Start"
+                       HorizontalOptions="Start"
+                       VerticalOptions="FillAndExpand"
+                       VerticalTextAlignment="Center"
+                       BackgroundColor="#5085A5"
+                       Margin="10, 0, 0, 0"/>
+            </Frame>
+
+
+            <!-- LOCATION -->
+            <Label Text="Location: " 
+                   FontSize="Medium"
+                   TextColor="#8FC1E3"
+                   Grid.Column="0" 
+                   Grid.Row="3"
+                   HorizontalTextAlignment="End"
+                   HorizontalOptions="EndAndExpand"
+                   VerticalOptions="Center"/>
+            <Frame Grid.Row="3" 
+                   Grid.Column="1"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Padding="2"
+                   Margin="0, 0, 15, 0"
+                   CornerRadius="7"
+                   BorderColor="#5085A5"
+                   BackgroundColor="#5085A5">
+                <Label x:Name="location_label" Text="{Binding ImageCoordinates, Mode=TwoWay}"
+                       TextColor="#F7F9fB"
+                       HorizontalTextAlignment="Start"
+                       HorizontalOptions="Start"
+                       VerticalOptions="FillAndExpand"
+                       VerticalTextAlignment="Center"
+                       BackgroundColor="#5085A5"
+                       Margin="10, 0, 0, 0"/>
+            </Frame>
+            
+            <!-- CATEGORY -->
+            <Label Text="Category: " 
+                   FontSize="Medium"
+                   TextColor="#8FC1E3"
+                   Grid.Column="0" 
+                   Grid.Row="4"
+                   HorizontalTextAlignment="End"
+                   HorizontalOptions="EndAndExpand"
+                   VerticalOptions="Center"/>
+            <Frame Grid.Row="4" 
+                   Grid.Column="1"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Padding="2"
+                   Margin="0, 0, 15, 0"
+                   CornerRadius="7"
+                   BorderColor="#5085A5"
+                   BackgroundColor="#5085A5">
+                <StackLayout Orientation="Horizontal"  
+                             VerticalOptions="FillAndExpand" 
+                             HorizontalOptions="FillAndExpand">
+                    <Entry x:Name="category_label"
+                           Text="{Binding ImageCategory, Mode=TwoWay}"
+                           Placeholder="enter category" 
+                           FontSize="14"
+                           TextColor="#F7F9fB"
+                           HorizontalTextAlignment="Start"
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="EndAndExpand"
+                           BackgroundColor="#5085A5"
+                           Margin="10, 0, 0, 0"/>
+                    <Button x:Name="CategoryButton" Text="ADD"
+                            Clicked="CategoryButton_Clicked"
+                            IsEnabled="{Binding CategoryButtonEnabled, Mode=TwoWay}"
+                            HorizontalOptions="End"
+                            VerticalOptions="Fill"
+                            BackgroundColor="#8EE4AF"/>
+                </StackLayout>
+            </Frame>
+            
+            <!-- CONFIRM SAVE BUTTON -->
+            <Button x:Name="ConfirmSaveButton" Clicked="ConfirmSaveButton_Clicked" 
+                    Text="Save" 
+                    FontSize="Large"
+                    Grid.Row="5" 
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    CornerRadius="10"
+                    Margin="15, 10, 15 , 10"
+                    BackgroundColor="#90CCF4"/>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
+    
+ <!--
+        <Entry Text="Timestamp: " 
+                   IsReadOnly="True"
+                   Grid.Column="0" 
+                   Grid.Row="2"
+                   HorizontalTextAlignment="End"
+                   HorizontalOptions="EndAndExpand"
+                   VerticalOptions="Center"/>
+    <Entry  x:Name="TimeStamp_Entry"
+                   IsReadOnly="True"
+                   Grid.Column="1" 
+                   Grid.Row="2"
+                   HorizontalTextAlignment="Start"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Center"/>
+    <Entry Text="Location: " 
+                   IsReadOnly="True"
+                   Grid.Column="0" 
+                   Grid.Row="3"
+                   HorizontalTextAlignment="End"
+                   HorizontalOptions="EndAndExpand"
+                   VerticalOptions="Center"/>
+    <Entry  x:Name="Location_Entry"
+                   IsReadOnly="True"
+                   Grid.Column="1" 
+                   Grid.Row="3"
+                   HorizontalTextAlignment="Start"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Center"/>
+    <Entry Text="Category: " 
+                   IsReadOnly="True"
+                   Grid.Column="0" 
+                   Grid.Row="4"
+                   HorizontalTextAlignment="End"
+                   HorizontalOptions="EndAndExpand"
+                   VerticalOptions="Center"/>
+    <Entry Placeholder="enter a category"
+                   Grid.Column="1" 
+                   Grid.Row="4"
+                   HorizontalTextAlignment="Start"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Center"/>
+
+    -->

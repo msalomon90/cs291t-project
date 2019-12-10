@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="projectApp.View.CaptureImage">
+    <ContentPage.Content>
+
+        <Grid VerticalOptions="FillAndExpand" BackgroundColor="#265077">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="newImage" Source="{Binding CapturedImage}"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   VerticalOptions="CenterAndExpand"/>
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                <ImageButton x:Name="discardButton" Source="discardx2.png"
+                             IsVisible="{Binding DiscardButton_isVisible}"
+                             BackgroundColor="#F78888"
+                             Padding="25"
+                             Margin="10,10,10,10"
+                             CornerRadius="50"
+                             HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="FillAndExpand"/>
+                <ImageButton x:Name="saveButton"  Source="save2.png" Clicked="SaveButton_Clicked"
+                             IsVisible="{Binding SaveButton_isVisible}"
+                             BackgroundColor="#65CCB8"
+                             Padding="20"
+                             Margin="10,10,10,10"
+                             CornerRadius="50"
+                             HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="FillAndExpand"/>
+            </StackLayout>
+            
+        </Grid>
+       
+    </ContentPage.Content>
+</ContentPage>

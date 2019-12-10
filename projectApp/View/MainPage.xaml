@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="projectApp.MainPage"
+             Title="ProjectApp">
+
+    <Grid VerticalOptions="FillAndExpand" BackgroundColor="#265077">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ImageButton ClassId="{Binding CameraPage}" x:Name="CaptureButton" Source="camera.png" Clicked="MainPage_Clicked"
+                     Grid.Column="0"
+                     Grid.Row="0"
+                     Padding="35"
+                     Margin="10,50,10,15"
+                     BackgroundColor="#F3D250"
+                     HorizontalOptions="CenterAndExpand"
+                     VerticalOptions="FillAndExpand"
+                     CornerRadius="40"/>
+        <ImageButton ClassId="{Binding RatePage}" x:Name="RateButton" Source="rate.png" Clicked="MainPage_Clicked"
+                     Grid.Column="0"
+                     Grid.Row="1"
+                     Padding="35"
+                     Margin="10,15,10,50"
+                     BackgroundColor="#F78888"
+                     HorizontalOptions="CenterAndExpand"
+                     VerticalOptions="FillAndExpand"
+                     CornerRadius="40"/>
+        <ImageButton ClassId="{Binding BrowsePage}" x:Name="BrowseButton" Source="browse2.png" Clicked="MainPage_Clicked"
+                     Grid.Column="1"
+                     Grid.Row="0"
+                     Padding="35"
+                     Margin="10,50,10,15"
+                     BackgroundColor="#90CCF4"
+                     HorizontalOptions="CenterAndExpand"
+                     VerticalOptions="FillAndExpand"
+                     CornerRadius="40"/>
+        <ImageButton ClassId="{Binding MapPage}" x:Name="LocationButton" Source="location2.png" Clicked="MainPage_Clicked"
+                     Grid.Column="1"
+                     Grid.Row="1"
+                     Padding="35"
+                     Margin="10,15,10,50"
+                     BackgroundColor="#8EE4AF"
+                     HorizontalOptions="CenterAndExpand"
+                     VerticalOptions="FillAndExpand"
+                     CornerRadius="40"/>
+
+    </Grid>
+    <!--
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1" Grid.Row="1">
+            <ImageButton x:Name="CaptureButton" Source="camera.png" Clicked="MainPage_Clicked"
+                     Grid.Column="1"
+                     Grid.Row="1"
+                     BackgroundColor="Transparent"
+                     HeightRequest="80"
+                     WidthRequest="280"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     CornerRadius="10"/>
+            <Label Text="Capture Image" VerticalOptions="Center" HorizontalOptions="Center"/>
+        </StackLayout>
+        <ImageButton x:Name="RateButton" Source="rate.png" Clicked="MainPage_Clicked"
+                     Grid.Column="0"
+                     Grid.Row="2"
+                     Padding="10"
+                     BackgroundColor="Transparent"
+                     HeightRequest="80"
+                     WidthRequest="100"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     CornerRadius="10"/>
+        <ImageButton x:Name="BrowseButton" Source="browse2.png" Clicked="MainPage_Clicked"
+                     Grid.Column="2"
+                     Grid.Row="2"
+                     Padding="10"
+                     BackgroundColor="Transparent"
+                     HeightRequest="80"
+                     WidthRequest="100"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     CornerRadius="10"/>
+
+    </Grid>
+    
+    -->
+    
+    
+ <!--
+    <StackLayout VerticalOptions="Center" Spacing="150">
+        
+        <ImageButton x:Name="CaptureButton" Source="camera.png" Clicked="MainPage_Clicked"
+                BackgroundColor="Transparent"
+                HeightRequest="80"
+                WidthRequest="280"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                CornerRadius="10"/>
+        <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+            <ImageButton x:Name="RateButton" Source="rate.png" Clicked="MainPage_Clicked"
+                    BackgroundColor="Transparent"
+                    HeightRequest="80"
+                    WidthRequest="100"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    CornerRadius="10"/>
+            <ImageButton x:Name="BrowseButton" Source="browse2.png" Clicked="MainPage_Clicked"
+                    BackgroundColor="Transparent"
+                    HeightRequest="80"
+                    WidthRequest="100"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    CornerRadius="10"/>
+        </StackLayout>
+    </StackLayout>
+   -->
+
+</ContentPage>
